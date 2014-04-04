@@ -1,7 +1,14 @@
 source 'https://rubygems.org'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'parapets-service', path: '../parapets-service'
+def path_or_repo(path,repo)
+  if Dir.exists?(path)
+    { path: path }
+  else
+    { git: "https://github.com/#{repo}.git" }
+  end
+end
+
+gem 'parapets-service', path_or_repo('../parapets-service', 'parapets/parapets-service')
 gem 'rails', '4.0.4'
 
 # Use sqlite3 as the database for Active Record
